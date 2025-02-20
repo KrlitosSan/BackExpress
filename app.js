@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 // Get the client
 const mysql = require("mysql2/promise");
 const session = require("express-session");
@@ -11,7 +11,10 @@ const validar = require("./validar");
 const registro = require("./registro");
 const { obtenerUsuarios, eliminarUsuario } = require("./usuarios");
 const saltRounds = 10;
-app.use(
+
+//root:GHCOjPMIMZZUSOwlaYoknhXHSWsKGOYm@hopper.proxy.rlwy.net:56788/railway
+
+mysql: app.use(
   cors({
     credentials: true,
     origin: process.env.URLFRONT || "http://localhost:5173",
@@ -24,11 +27,9 @@ app.use(
     cookie: {
       secure: process.env.NODE_ENV === "production",
       sameSite: "none",
-    }
+    },
   })
 );
-
-
 
 app.get("/", (req, res) => {
   res.send("Hello Krlitos");
