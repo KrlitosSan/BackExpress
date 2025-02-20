@@ -22,7 +22,7 @@ app.use(
     secret: process.env.SECRETSESSION || "secret",
     proxy: process.env.NODE_ENV === "production",
     cookie: {
-      secure:     proxy: process.env.NODE_ENV === "production",
+      secure: process.env.NODE_ENV === "production",
       sameSite: "none",
     }
   })
