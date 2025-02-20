@@ -14,12 +14,17 @@ const saltRounds = 10;
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5173",
+    origin: process.env.URLFRONT || "http://localhost:5173",
   })
 );
 app.use(
   session({
-    secret: "secret",
+    secret: process.env.SECRETSESSION || "secret",
+    proxy: process.env.NODE_ENV === "production",
+    cookie: {
+      secure:     proxy: process.env.NODE_ENV === "production",
+      sameSite: "none",
+    }
   })
 );
 
